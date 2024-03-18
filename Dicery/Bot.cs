@@ -1,5 +1,7 @@
-﻿using Dicery.Models;
+﻿using Dicery.Commands;
+using Dicery.Models;
 using Guilded;
+using Guilded.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,9 @@ namespace Dicery
 
         public async Task RunAsync()
         {
-            await using var client = new GuildedBotClient(token!);
+            await using var client = new GuildedBotClient(token!)
+                .AddCommands(new MemberCommands(), prefix!)
+                .AddCommands(new ModCommands(), prefix!);
 
 
 
